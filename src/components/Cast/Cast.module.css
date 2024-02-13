@@ -1,0 +1,22 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  gap: 15px;
+  list-style-type: none;
+}
+.img {
+  width: 250px;
+}
+.discription {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
+}
+.title {
+  color: brown;
+  font-size: 25px;
+  font-weight: 600;
+}

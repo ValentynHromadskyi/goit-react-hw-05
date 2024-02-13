@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  gap: 10px;
+  list-style-type: none;
+}
+.author {
+  font-size: 20px;
+  color: brown;
+  text-decoration: underline;
+}

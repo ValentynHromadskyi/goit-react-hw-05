@@ -1,0 +1,19 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  list-style-type: none;
+}
+
+.link {
+  color: black;
+  font-size: 18px;
+}
+
+.link:hover {
+  text-decoration: underline;
+  color: brown;
+}
+.btn {
+  background-color: black;
+}
