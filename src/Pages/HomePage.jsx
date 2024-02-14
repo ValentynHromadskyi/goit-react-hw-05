@@ -22,9 +22,7 @@ export default function HomePage() {
         });
         setTrending(fetchedTrendings);
       } catch (error) {
-        if (error.code !== "ERR_CANCELED") {
-          toast.error("Oops, there was an error, please try reloading!");
-        }
+        toast.error("Oops, there was an error, please try reloading!");
       } finally {
         setLoading(false);
       }

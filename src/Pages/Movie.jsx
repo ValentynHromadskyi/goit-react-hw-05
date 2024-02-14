@@ -17,6 +17,7 @@ function Movie() {
   const back = useRef(location.state);
 
   useEffect(() => {
+    const controller = new AbortController();
     if (!id) return;
 
     async function fetchData() {
@@ -26,15 +27,16 @@ function Movie() {
         const fetchedData = await getFilmsId(id);
         setDataMovie(fetchedData);
       } catch (error) {
-        if (error.code !== "ERR_CANCELED") {
-          toast.error("Oops, there was an error, please try reloading!");
-        }
+        toast.error("Oops, there was an error, please try reloading!");
       } finally {
         setLoading(false);
       }
     }
 
     fetchData();
+    return () => {
+      controller.abort();
+    };
   }, [id]);
 
   return (

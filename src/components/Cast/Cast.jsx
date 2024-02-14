@@ -15,22 +15,23 @@ function Cast() {
     "https://shop.vsimosvita.com/wp-content/uploads/2024/02/default-image.jpg";
 
   useEffect(() => {
+    const controller = new AbortController();
     if (!id) return;
-
     async function fetchData() {
       try {
         setLoading(true);
         const fetched = await getFilmsCast(id);
         setCasts(fetched.cast);
       } catch (error) {
-        if (error.code !== "ERR_CANCELED") {
-          toast.error("Oops, there was an error, please try reloading!");
-        }
+        toast.error("Oops, there was an error, please try reloading!");
       } finally {
         setLoading(false);
       }
     }
     fetchData();
+    return () => {
+      controller.abort();
+    };
   }, [id]);
 
   return (

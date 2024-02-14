@@ -34,9 +34,7 @@ function Movies() {
 
         setMovie(fetchedTrending);
       } catch (error) {
-        if (error.code !== "ERR_CANCELED") {
-          toast.error("Oops, there was an error, please try reloading!");
-        }
+        toast.error("Oops, there was an error, please try reloading!");
       } finally {
         setLoading(false);
       }

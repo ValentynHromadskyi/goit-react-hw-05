@@ -12,6 +12,8 @@ function Reviews() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     if (!id) return;
 
     async function fetch() {
@@ -20,15 +22,16 @@ function Reviews() {
         const fetcheData = await getFilmsReviews(id);
         setReviews(fetcheData.results);
       } catch (error) {
-        if (error.code !== "ERR_CANCELED") {
-          toast.error("Oops, there was an error, please try reloading!");
-        }
+        toast.error("Oops, there was an error, please try reloading!");
       } finally {
         setLoading(false);
       }
     }
 
     fetch();
+    return () => {
+      controller.abort();
+    };
   }, [id]);
 
   return (
