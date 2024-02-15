@@ -5,7 +5,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import PageMovie from "../components/PageMovie/PageMovie";
 import { Back } from "../components/Back/Back";
 import css from "./Movie.module.css";
-import Loader from "../components/App/Loader/Loader";
+import Loader from "../components/Loader/Loader";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 
@@ -17,7 +17,6 @@ function Movie() {
   const back = useRef(location.state);
 
   useEffect(() => {
-    const controller = new AbortController();
     if (!id) return;
 
     async function fetchData() {
@@ -34,9 +33,6 @@ function Movie() {
     }
 
     fetchData();
-    return () => {
-      controller.abort();
-    };
   }, [id]);
 
   return (

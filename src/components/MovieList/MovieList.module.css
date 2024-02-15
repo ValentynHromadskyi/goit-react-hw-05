@@ -5,15 +5,9 @@
   align-items: start;
   gap: 10px;
   list-style-type: none;
-  border: 2px solid brown;
-  border-radius: 20px;
   padding: 10px;
 }
-.li {
-  padding: 10px;
-  border: 1px brown solid;
-  border-radius: 10px;
-}
-.lin {
-  color: brown;
+
+.image {
+  border-radius: 15px;
 }

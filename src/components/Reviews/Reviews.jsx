@@ -4,7 +4,7 @@ import { getFilmsReviews } from "../api";
 import css from "./Reviews.module.css";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
-import Loader from "../App/Loader/Loader";
+import Loader from "../Loader/Loader";
 
 function Reviews() {
   const { id } = useParams();
@@ -12,10 +12,7 @@ function Reviews() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const controller = new AbortController();
-
     if (!id) return;
-
     async function fetch() {
       try {
         setLoading(true);
@@ -29,9 +26,6 @@ function Reviews() {
     }
 
     fetch();
-    return () => {
-      controller.abort();
-    };
   }, [id]);
 
   return (
@@ -44,7 +38,7 @@ function Reviews() {
             <li key={review.id}>
               <div>
                 <p className={css.author}>{review.author}</p>
-                <p>{review.content}</p>
+                <p className={css.review}>{review.content}</p>
               </div>
             </li>
           ))}

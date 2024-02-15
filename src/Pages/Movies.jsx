@@ -3,7 +3,7 @@ import { getFilms } from "../components/api";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import MovieList from "../components/MovieList/MovieList";
-import Loader from "../components/App/Loader/Loader";
+import Loader from "../components/Loader/Loader";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 
@@ -18,9 +18,7 @@ function Movies() {
   };
 
   useEffect(() => {
-    const controller = new AbortController();
-
-    if (!search) {
+        if (!search) {
       return;
     }
 
@@ -29,7 +27,6 @@ function Movies() {
         setLoading(true);
         const fetchedTrending = await getFilms({
           search,
-          abortController: controller,
         });
 
         setMovie(fetchedTrending);
@@ -40,10 +37,6 @@ function Movies() {
       }
     }
     fetchData();
-
-    return () => {
-      controller.abort();
-    };
   }, [search]);
 
   return (

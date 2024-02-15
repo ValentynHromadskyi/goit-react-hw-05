@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getFilmsCast } from "../api";
 import css from "./Cast.module.css";
-import Loader from "../App/Loader/Loader";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
+import Loader from "../Loader/Loader";
 
 function Cast() {
   const { id } = useParams();
@@ -15,7 +15,6 @@ function Cast() {
     "https://shop.vsimosvita.com/wp-content/uploads/2024/02/default-image.jpg";
 
   useEffect(() => {
-    const controller = new AbortController();
     if (!id) return;
     async function fetchData() {
       try {
@@ -29,9 +28,6 @@ function Cast() {
       }
     }
     fetchData();
-    return () => {
-      controller.abort();
-    };
   }, [id]);
 
   return (
@@ -44,18 +40,18 @@ function Cast() {
           <ul className={css.list}>
             {casts.map((cast) => (
               <li key={cast.id}>
-                <div className={css.img}>
-                  <img
-                    src={
-                      cast.profile_path
-                        ? `https://image.tmdb.org/t/p/w500${cast.profile_path}`
-                        : defImg
-                    }
-                    width={200}
-                  />
-                </div>
+                <img
+                  className={css.img}
+                  src={
+                    cast.profile_path
+                      ? `https://image.tmdb.org/t/p/w500${cast.profile_path}`
+                      : defImg
+                  }
+                  width={200}
+                />
+
                 <div className={css.discription}>
-                  <p>{cast.name}</p>
+                  <p className={css.name}>{cast.name}</p>
                   <p>character: {cast.character}</p>
                 </div>
               </li>

@@ -12,7 +12,7 @@ export function SearchBar({ onSearch }) {
       <form className={css.form} onSubmit={handleSubmit}>
         <input
           className={css.input}
-          name="query"
+          name="event.target.query.value"
           type="text"
           placeholder="Search movies"
         />

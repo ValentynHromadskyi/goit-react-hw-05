@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { getTrendingFilms } from "../components/api";
 import MovieList from "../components/MovieList/MovieList";
-import Loader from "../components/App/Loader/Loader";
+import Loader from "../components/Loader/Loader";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
 
 export default function HomePage() {
   const [trending, setTrending] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(false);
-  // console.log(error);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -22,7 +20,9 @@ export default function HomePage() {
         });
         setTrending(fetchedTrendings);
       } catch (error) {
-        toast.error("Oops, there was an error, please try reloading!");
+        if (error.code !== "ERR_CANCELED") {
+          toast.error("Oops, there was an error, please try reloading!");
+        }
       } finally {
         setLoading(false);
       }
