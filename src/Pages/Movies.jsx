@@ -18,7 +18,7 @@ function Movies() {
   };
 
   useEffect(() => {
-        if (!search) {
+    if (!search) {
       return;
     }
 

@@ -41,7 +41,7 @@ export const getFilmsReviews = async (id) => {
   return response.data;
 };
 
-export const getTrendingFilms = async (abortController) => {
+export const getTrendingFilms = async ({ abortController }) => {
   const response = await axios.get("trending/movie/day", {
     params: { api_key: API_KEY, language: "en-US" },
     signal: abortController.signal,
